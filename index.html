@@ -301,9 +301,9 @@
     var forced = params.get("bug");
     if (forced === "lapse" || forced === "poops") {
         bug = forced;
-        why = "تم التحديد يدوياً via ?bug=" + forced;
+        why = "manually updated via ?bug=" + forced;
     } else if (!key) {
-        why = "المتصفح ليس من PlayStation 4";
+        why = "use a ps4 nextime dumbass";
     } else if (fwnum <= 1202) {
         bug = "lapse";
         why = key + " ≤ 12.02 ✓";
@@ -314,9 +314,9 @@
         why = key + " — no jailbreak for you brokie";
     }
 
-    var bugDisplay = bug ? '<span class="highlight">' + bug + '</span>' : '<span style="color:#d08a7f;">غير مدعوم</span>';
+    var bugDisplay = bug ? '<span class="highlight">' + bug + '</span>' : '<span style="color:#d08a7f;">unsupported</span>';
     detEl.innerHTML = 'firmware <b>' + (key || 'unkown') + '</b>'
-        + ' &middot; الثغرة ' + bugDisplay
+        + ' &middot; galebrik ' + bugDisplay
         + ' &middot; ' + why;
 
     if (!bug) {
