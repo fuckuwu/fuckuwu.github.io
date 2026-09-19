@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>عالم السوني - PS4 Tool</title>
+<title>phrost lost his lua demo lol - PS4 Tool</title>
 <style>
   html, body { 
     margin:0; 
@@ -210,7 +210,7 @@
       <span>🛡️</span>
     </div>
     <div class="info">
-      <div class="name">عالم السوني</div>
+      <div class="name">phrost lost his lua game</div>
       <div class="sub">PS4 Tool · v2.0</div>
     </div>
     <div class="badge">⚡ exploit</div>
@@ -219,22 +219,22 @@
   <div id="wrap">
     <div id="state">
       <span class="dot wait" id="dot"></span>
-      <span id="state-text">جاري الكشف...</span>
+      <span id="state-text">checking</span>
     </div>
-    <div id="det">جاري تحليل النظام...</div>
+    <div id="det">hol up</div>
 
     <div class="divider"></div>
 
     <div id="cache">
       <span class="icon">⏳</span>
-      <span id="cache-text">جاري التخزين المؤقت...</span>
+      <span id="cache-text">caching...</span>
     </div>
 
     <div id="progress"><div class="bar" id="progress-bar"></div></div>
 
-    <button id="action-btn">▸ اضغط للمتابعة</button>
+    <button id="action-btn">go on</button>
 
-    <div id="footer"> عالم السوني</div>
+    <div id="footer"> phrost los his lua game </div>
   </div>
 </div>
 
@@ -311,24 +311,24 @@
         bug = "poops";
         why = key + " ≥ 12.50 ✓";
     } else {
-        why = key + " — لا توجد ثغرة مناسبة (lapse حتى 12.02، poops من 12.50)";
+        why = key + " — no jailbreak for you brokie";
     }
 
     var bugDisplay = bug ? '<span class="highlight">' + bug + '</span>' : '<span style="color:#d08a7f;">غير مدعوم</span>';
-    detEl.innerHTML = 'الإصدار <b>' + (key || 'غير معروف') + '</b>'
+    detEl.innerHTML = 'firmware <b>' + (key || 'unkown') + '</b>'
         + ' &middot; الثغرة ' + bugDisplay
         + ' &middot; ' + why;
 
     if (!bug) {
-        setState("⚠️ إصدار غير مدعوم", "bad");
-        setCache("لا توجد ثغرة مناسبة لهذا الإصدار", false, true);
+        setState("unsupported", "bad");
+        setCache("no galebrik", false, true);
         return;
     }
 
     var target = (bug === "lapse" ? "run_lapse.html" : "run_poops.html") + location.search;
 
     function go() {
-        setState("جاري التحميل...", "loading");
+        setState("wait", "loading");
         setProgress(30);
         setTimeout(function() {
             setProgress(70);
@@ -341,7 +341,7 @@
 
     function waitForTap(msg, action) {
         setState(msg, "warn");
-        showBtn("▸ اضغط للتشغيل", action);
+        showBtn("move brah", action);
     }
 
     // ===== نظام التخزين المؤقت =====
@@ -353,7 +353,7 @@
         // التحقق من التخزين المسبق في localStorage
         try {
             if (localStorage.getItem('ps4tool_cached') === 'true' && !navigator.onLine) {
-                setCache("✓ مخزّن مسبقاً ✅", true);
+                setCache("✓ already cached dumbass✅", true);
                 setTimeout(go, 300);
                 return;
             }
@@ -361,7 +361,7 @@
 
         if (!ac || !hasManifest) {
             // إذا لم يكن AppCache متاحاً، استخدم localStorage كبديل
-            setCache("⏳ جاري التخزين المحلي...");
+            setCache("⏳...");
             setProgress(5);
             
             var files = ['index.html', 'run_lapse.html', 'run_poops.html', 'chain_lapse.js', 'chain_poops.js'];
@@ -377,11 +377,11 @@
                             localStorage.setItem('cache_' + file, xhr.responseText);
                             loaded++;
                             var pct = Math.round((loaded / total) * 100);
-                            setCache("⏳ التخزين: " + pct + "%");
+                            setCache("⏳ caching: " + pct + "%");
                             setProgress(Math.min(pct, 90));
                             if (loaded === total) {
                                 localStorage.setItem('ps4tool_cached', 'true');
-                                setCache("✓ تم التخزين المحلي ✅", true);
+                                setCache("✓ cached ✅", true);
                                 setProgress(100);
                                 setTimeout(go, 500);
                             }
@@ -394,35 +394,35 @@
         }
 
         // استخدام Application Cache
-        setCache("⏳ جاري التخزين المؤقت...");
+        setCache("⏳ caching...");
         setProgress(5);
 
         ac.addEventListener('checking', function() {
-            setCache("⏳ جاري التحقق...");
+            setCache("⏳ checking...");
         }, false);
 
         ac.addEventListener('downloading', function() {
-            setCache("⏳ جاري التحميل...");
+            setCache("⏳ loading...");
             setProgress(10);
         }, false);
 
         ac.addEventListener('progress', function(e) {
             if (e && e.total) {
                 var pct = Math.round((e.loaded / e.total) * 100);
-                setCache("⏳ التخزين: " + pct + "%");
+                setCache("⏳ cache: " + pct + "%");
                 setProgress(Math.min(pct, 90));
             }
         }, false);
 
         ac.addEventListener('cached', function() {
-            setCache("✓ تم التخزين بنجاح ✅", true);
+            setCache("✓ cached ✅", true);
             setProgress(100);
             try { localStorage.setItem('ps4tool_cached', 'true'); } catch(e) {}
             setTimeout(go, 500);
         }, false);
 
         ac.addEventListener('noupdate', function() {
-            setCache("✓ مخزّن مسبقاً ✅", true);
+            setCache("✓ alredy cached ✅", true);
             setProgress(100);
             try { localStorage.setItem('ps4tool_cached', 'true'); } catch(e) {}
             setTimeout(go, 400);
@@ -430,27 +430,27 @@
 
         ac.addEventListener('updateready', function() {
             try { ac.swapCache(); } catch(e) {}
-            setCache("✓ تم التحديث ✅", true);
+            setCache("✓ updated ✅", true);
             setProgress(100);
-            waitForTap("🔄 تحديث جاهز — اضغط للتشغيل", function() { 
+            waitForTap("🔄 update cache", function() { 
                 location.reload(); 
             });
         }, false);
 
         ac.addEventListener('error', function(e) {
             console.warn('AppCache error:', e);
-            setCache("⚠️ فشل التخزين المؤقت", false, true);
-            waitForTap("⚠️ فشل الكاش — اضغط للتشغيل", go);
+            setCache("⚠️ caching failed", false, true);
+            waitForTap("⚠️ caching failed", go);
         }, false);
 
         ac.addEventListener('obsolete', function() {
-            setCache("⚠️ الكاش قديم", false, true);
-            waitForTap("⚠️ كاش قديم — اضغط للتشغيل", go);
+            setCache("⚠️ your cahce is older than thinkpad", false, true);
+            waitForTap("⚠️ old ahh cache", go);
         }, false);
 
         // إذا كان متصفح PS4 و AppCache جاهز
         if (isPS4 && ac.status === ac.IDLE) {
-            setCache("✓ مخزّن مسبقاً ✅", true);
+            setCache("✓ alredy cached ✅", true);
             setProgress(100);
             try { localStorage.setItem('ps4tool_cached', 'true'); } catch(e) {}
             setTimeout(go, 400);
