@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>عالم السوني - Lapse</title>
+  <title>phrost lost his lua game - Lapse</title>
   <style>
     * {
       margin: 0;
@@ -231,7 +231,7 @@
         <span>🛡️</span>
       </div>
       <div class="info">
-        <div class="name">عالم السوني</div>
+        <div class="name">phrost lost his lua game what a loser</div>
         <div class="sub">PS4 Tool · Lapse</div>
       </div>
       <div class="badge">⚡ lapse</div>
@@ -240,14 +240,14 @@
     <div id="wrap">
       <div id="state">
         <span class="spinner" id="spinner"></span>
-        <span id="state-text">جاري تحميل سلسلة Lapse...</span>
+        <span id="state-text">loading Lapse...</span>
       </div>
 
-      <div id="out" id="output">⏳ جاري التهيئة...</div>
+      <div id="out" id="output">⏳ hol up...</div>
 
       <div id="progress"><div class="bar" id="progress-bar"></div></div>
 
-      <div id="footer">سجاد مهدي © 2026 — جميع الحقوق محفوظة</div>
+      <div id="footer">uwusef</div>
     </div>
   </div>
 
@@ -292,9 +292,9 @@
       }
 
       // ===== تهيئة الإخراج =====
-      logMessage('🔄 جاري تهيئة سلسلة Lapse...', 'info');
-      logMessage('📍 الثغرة: Lapse (PS4 12.02 أو أقل)', 'info');
-      setState('جاري التحميل...', 'loading');
+      logMessage('🔄 loading Lapse...', 'info');
+      logMessage(' Lapse 12.02<= ', 'info');
+      setState('loading');
       setProgress(10);
 
       // ===== تحميل الـ Chain =====
@@ -305,10 +305,10 @@
         try {
           import("./chain_lapse.js")
             .then(function(module) {
-              logMessage('✅ تم تحميل السلسلة بنجاح', 'ok');
+              logMessage('loaded', 'ok');
               setProgress(100);
-              setState('✅ تم التحميل', 'done');
-              logMessage('🚀 جاري تشغيل الثغرة...', 'info');
+              setState('✅ successfully loaded', 'done');
+              logMessage('🚀 exploding ur console rq bozo...', 'info');
 
               // إذا كان هناك دالة تشغيل في الموديول
               if (module && typeof module.run === 'function') {
@@ -316,18 +316,18 @@
               } else if (module && typeof module.default === 'function') {
                 module.default();
               } else {
-                logMessage('⚠️ لا توجد دالة تشغيل في السلسلة', 'warn');
+                logMessage('⚠️idk what this means', 'warn');
               }
             })
             .catch(function(err) {
-              logMessage('❌ فشل تحميل السلسلة: ' + err.message, 'bad');
-              setState('⚠️ فشل التحميل', 'bad');
+              logMessage('❌ epic fail: ' + err.message, 'bad');
+              setState('⚠️ not loaded', 'bad');
               setProgress(0);
               console.error('Chain load error:', err);
             });
         } catch (err) {
-          logMessage('❌ خطأ في التحميل: ' + err.message, 'bad');
-          setState('⚠️ خطأ في التحميل', 'bad');
+          logMessage('❌ smth went wrong idk: ' + err.message, 'bad');
+          setState('⚠️ error', 'bad');
           console.error('Load error:', err);
         }
       }
